@@ -1,0 +1,15 @@
+{
+  "name": "discord-made-siple",
+  "version": "1.0.0",
+  "description": "Discord made siple through a cool command system",
+  "main": "index.js",
+  "scripts": {
+    "run": "node index.js"
+  },
+  "author": "a1cd",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^8.2.0"
+  }
+}
