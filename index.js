@@ -1,7 +1,8 @@
 require('dotenv').config();
 const Discord = require('discord.js');
+const { config } = require('dotenv');
 const bot = new Discord.Client();
-const TOKEN = "ODUzNjMxNzE2OTU3NzQ5MjU4.YMYMfQ.h-rdrC3-DsF82wSNynmvRbqw3M0";
+const TOKEN = process.env.TOKEN;
 
 bot.login(TOKEN);
 
@@ -86,13 +87,22 @@ function ping(inp, msg, cmd) {
   msg.reply("pong")
 }
 /**
- * 
  * @param {String} inp 
  * @param {Discord.Message} msg 
  * @param {Cmd} cmd 
  */
 function help(inp, msg, cmd) {
   msg.reply(cmd.help)
+}
+/**
+ * @param {String} inp 
+ * @param {Discord.Message} msg 
+ * @param {Cmd} cmd 
+ */
+function uptime(inp, msg, cmd) {
+  let tseconds = Math.floor(bot.uptime/1000)
+  let tmiliseconds = bot.uptime-(tseconds*1000)
+  msg.reply("i have been up for "+tseconds.toString()+"."+tmiliseconds.toString())
 }
 function addRule(inp, msg, cmd) {
   msg.reply("yep")
@@ -101,10 +111,14 @@ let Commands = new Cmd("!", 0, ()=>{}, "", [
   new Cmd("ping", 0, ping),
   new Cmd("rule", 1, help, null, [
     new Cmd("add", 0, addRule)
-  ])
+  ]),
+  new Cmd("uptime", 2, uptime, "current time online")
 ])
 bot.on('message', msg => {
   if (msg.channel.name.startsWith("bot")) {
     Commands.test(msg.content, msg)
+  }
+  if (msg.content == "hi") {
+    msg.reply("hey!")
   }
 });
