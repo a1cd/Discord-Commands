@@ -115,9 +115,9 @@ let Commands = new Cmd("!", 0, ()=>{}, "", [
   new Cmd("uptime", 2, uptime, "current time online")
 ])
 bot.on('message', msg => {
-  if (msg.channel.name.startsWith("bot")) {
+  // if (msg.channel.name.startsWith("bot")) {
     Commands.test(msg.content, msg)
-  }
+  // }
   if (msg.content == "hi") {
     msg.reply("hey!")
   }
