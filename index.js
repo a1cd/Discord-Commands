@@ -13,15 +13,15 @@ class Cmd {
   /**
    * @type {String}
    */
-  name
+  name = null
   /**
    * @type {Number}
    */
-  id
+  id = null
   /**
    * @type {String} - The help message that is displayed
    */
-  help
+  help = null
   /**
    * @type {Cmd[] | null} subcommands - All subcommands
    */
@@ -29,7 +29,7 @@ class Cmd {
   /**
    * @type {(input: String, message: Discord.Message, command: Cmd) => {}}
    */
-  command
+  command = null
   /**
    * @param {String} name - The text trigger for the command.
    * @param {Number} id - The id of the command
