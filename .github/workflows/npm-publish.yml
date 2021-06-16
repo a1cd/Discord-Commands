@@ -5,7 +5,11 @@ name: Node.js Package
 
 on:
   release:
-    types: [created]
+    types: [created, edited, prereleased, published, released]
+  workflow_dispatch:
+    inputs:
+      name:
+        description: name of release
 
 jobs:
   build:
