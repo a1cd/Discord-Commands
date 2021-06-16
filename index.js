@@ -1,10 +1,24 @@
 require('dotenv').config();
 const Discord = require('discord.js');
-const { config } = require('dotenv');
+const mongo = require('mongodb');
 const bot = new Discord.Client();
-const TOKEN = process.env.TOKEN;
+const TOKEN = process.env.TOKEN
 
-bot.login(TOKEN);
+const MongoClient = require('mongodb').MongoClient;
+
+const test = require('assert');
+
+// Connection url
+
+const url = 'mongodb://localhost:27017';
+
+// Database Name
+
+const dbName = 'discord';
+
+// Connect using MongoClient
+
+bot.login(TOKEN)
 
 bot.on('ready', () => {
   console.info(`Logged in as ${bot.user.tag}!`);
@@ -130,13 +144,38 @@ function uptime(inp, msg, cmd) {
   }
   msg.reply("i have been up for "+msToTime(bot.uptime))
 }
+/**
+ * @param {String} inp 
+ * @param {Discord.Message} msg 
+ * @param {Cmd} cmd 
+ */
 function addRule(inp, msg, cmd) {
-  msg.reply("yep")
+  MongoClient.connect(url, function(err, client) {
+    // Create a collection we want to drop later
+    client.db(dbName).collection("rules").countDocuments().then((index)=>{
+      client.db(dbName).collection("rules").insertOne({"rule":"yes", "content":inp.trim().slice(3).trim(), "index":index})
+    })
+  });
+}
+function listRule(inp, msg, cmd) {
+  MongoClient.connect(url, function(err, client) {
+    // Create a collection we want to drop later
+    let value = client.db(dbName).collection("rules").find({"rule":"yes"})
+    value.count().then((count) => {
+      var reply =  count.toString() + " rules\n"
+      value.forEach((doc) => {
+        reply = reply + doc.content + "\n"
+      })
+      // reply = reply.slice(0,2)
+      msg.reply(reply)
+    })
+  });
 }
 let Commands = new Cmd("!", 0, ()=>{}, "", [
   new Cmd("ping", 0, ping),
   new Cmd("rule", 1, help, null, [
-    new Cmd("add", 0, addRule)
+    new Cmd("add", 0, addRule),
+    new Cmd("list", 0, listRule)
   ]),
   new Cmd("uptime", 2, uptime, "current time online")
 ])
