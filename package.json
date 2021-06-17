@@ -4,7 +4,8 @@
   "description": "Discord made siple through a cool command system",
   "main": "index.js",
   "scripts": {
-    "run": "node index.js"
+    "run": "node index.js",
+    "test": ""
   },
   "author": "a1cd",
   "license": "ISC",
@@ -13,5 +14,9 @@
     "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
     "mongodb": "^3.6.9"
+  },
+  "devDependencies": {
+    "corde": "^4.1.2",
+    "simple-discord-commands": "^1.0.1"
   }
 }
