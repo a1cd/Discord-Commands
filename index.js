@@ -22,6 +22,10 @@ class Cmd {
    */
   subcommands
   /**
+   * @type {Discord.Client}
+   */
+  bot
+  /**
    * @type {(input: String, message: Discord.Message, command: Cmd) => {}}
    */
   command
@@ -70,6 +74,17 @@ class Cmd {
       }
     }
     return false
+  }
+  /**
+   * 
+   * @param {Discord.Client} bot - the bot that will be used
+   */
+  reindex(bot) {
+    for (let i = 0; i < this.subcommands.length; i++) {
+      const subcommand = this.subcommands[i];
+      subcommand.id = i
+      subcommand.bot = bot
+    }
   }
 }
 /**
