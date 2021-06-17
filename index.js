@@ -72,14 +72,22 @@ class Cmd {
     return false
   }
   /**
+   * @type {Cmd | null}
+   */
+  parent = null
+  /**
    * 
    * @param {Discord.Client} bot - the bot that will be used
    */
   reindex(bot) {
-    for (let i = 0; i < this.subcommands.length; i++) {
-      const subcommand = this.subcommands[i];
-      subcommand.id = i
-      subcommand.bot = bot
+    if (this.subcommands.length != 0) {
+      for (let i = 0; i < this.subcommands.length; i++) {
+        const subcommand = this.subcommands[i];
+        subcommand.id = i
+        subcommand.bot = bot
+        subcommand.parent = this
+        subcommand.reindex(this.bot)
+      }
     }
   }
 }
