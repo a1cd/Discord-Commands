@@ -1,9 +1,5 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client();
-module.exports = {
-  Cmd,
-  help
-}
+
 class Cmd {
   /**
    * @type {String}
@@ -131,3 +127,7 @@ function help(inp, msg, cmd) {
 //   }
 //   msg.reply("i have been up for "+msToTime(bot.uptime))
 // }
+module.exports = {
+  Cmd,
+  help
+}
