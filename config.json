@@ -1,4 +1,0 @@
-{
-    "testFilesDir": ["./test/bot.test.js"],
-    "testTimeOut": 1000
-}
