@@ -4,7 +4,8 @@
   "description": "Discord made siple through a cool command system",
   "main": "index.js",
   "scripts": {
-    "run": "node index.js"
+    "run": "node index.js",
+    "test": "corde"
   },
   "author": "a1cd",
   "license": "ISC",
