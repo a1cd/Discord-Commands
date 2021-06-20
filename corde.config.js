@@ -1,7 +1,4 @@
-const env = require("dotenv");
 const { testFilesDir, testTimeOut } = require("./Tconfig.json");
-
-const result = env.config();
 
 // Do not throw any error if the project in running inside CI.
 if (!process.env.CI && result.error) {
@@ -27,5 +24,5 @@ module.exports = {
   testMatches,
   guildId,
   botToken,
-  timeOut,
-};
+  timeOut
+}

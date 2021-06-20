@@ -25,6 +25,6 @@ describe("init", () => {
 // group("main commands", () => {
 // });
 
-// afterAll(() => {
-//   bot.destroy();
-// });
+afterAll(() => {
+  bot.destroy();
+});
