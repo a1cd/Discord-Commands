@@ -1,7 +1,8 @@
 {
   "name": "command-based-discord",
+  "displayName": "Command-Based Discord",
   "version": "1.0.0",
-  "description": "Discord made siple through a cool command system",
+  "description": "An easier way to create discord bots with plugins and commands",
   "main": "index.js",
   "scripts": {
     "run": "node index.js",
