@@ -1,3 +1,13 @@
+/**
+   * @typedef {Object} CommandOptions
+   * @property {String} name - The text trigger for the command.
+   * @property {Number} id - The id of the command
+   * @property {(input: String, message: Discord.Message, command: Cmd) => {}} commandFunction
+   * @property {String | null} help - The help message that is displayed when the help command is triggered
+   * @property {Cmd[] | null} subcommands - All subcommands
+   * @property {Discord.Client} bot - Discord bot for the command
+   */
+
 class command {
   /**
     * @type {String}
@@ -24,42 +34,47 @@ class command {
     */
   commandFunction
   /**
-    * @param {String} name - The text trigger for the command.
-    * @param {Number} id - The id of the command
-    * @param {(input: String, message: Discord.Message, command: Cmd) => {}} commandFunction
-    * @param {String | null} help - The help message that is displayed when the help command is triggered
-    * @param {Cmd[] | null} subcommands - All subcommands
-    */
+   * @description create the command!!!
+   * @param {CommandOptions} options
+   */
   constructor(options) {
+    console.log(options);
     this.name = options.name.trim()
     this.help = options.help.trim() || "There is no help page for this command!"
-    this.subcommands = options.subcommands
+    this.subcommands = options.subcommands || []
     this.commandFunction = options.commandFunction
-  }
-  /**
-    * @param {String} name - The text trigger for the command.
-    * @param {Number} id - The id of the command
-    * @param {(input: String, message: Discord.Message, command: Cmd) => {}} commandFunction
-    * @param {String | null} help - The help message that is displayed when the help command is triggered
-    * @param {Cmd[] | null} subcommands - All subcommands
-    */
-  constructor(name, commandFunction, help = null, subcommands = null) {
-    this.name = name.trim()
-    this.help = help.trim() || "There is no help page for this command!"
-    this.subcommands = subcommands
-    this.commandFunction = commandFunction
+    this.bot = options.bot || null
+    if (options.bot) {
+      this.reindex(this.bot)
+    }
   }
   /**
     * @param {String} text - the filtered text
     * @param {Discord.Message} message - the raw message sent
     */
   test(text, message) {
-    if (text.trimStart().startsWith(this.name)) {
+    let result = this.find(text, (command)=>{
+      if(!command.subcommands.length || command.subcommands){
+        return true
+      }
+      return false
+    })
+    if (result.commandFunction) {
+      result.commandFunction(text, message, result)
+    }
+  }
+  /**
+   * 
+   * @param {String} command - the command string
+   * @returns 
+   */
+  find(command, matcher = (cmd)=>{return true}) {
+    if (command.trimStart().startsWith(this.name)) {
       var done = false
-      if (this.subcommands) {
+      if (this.subcommands || !this.subcommands.length) {
         for (let i = 0; i < this.subcommands.length; i++) {
           const subcommand = this.subcommands[i];
-          var currentTest = subcommand.test(text.trimStart().slice(this.name.length), message)
+          var currentTest = subcommand.find(command.trimStart().slice(this.name.length))
           if (currentTest) {
             done = currentTest
             break
@@ -67,12 +82,11 @@ class command {
         }
       }
       if (!done) {
-        if (this.command){
-          this.command(text, message, this)
-          return true
+        if (matcher(this)) {
+          return this
         }
       } else {
-        return true
+        return done
       }
     }
     return false
@@ -97,5 +111,4 @@ class command {
     }
   }
 }
-new command()
 module.exports = command
