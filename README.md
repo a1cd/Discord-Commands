@@ -54,5 +54,5 @@ Look up how to create a discord bot on youtube, and after you have gotten a Bot 
 
 # Now what
 Most of the other instructions are on the website! You can check it out [here](https://a1cd.github.io/Discord-Commands/)!
-# ![we need help](https://img.shields.io/badge/we%20need-support-188FFF?style=for-the-badge&labelColor=1A1A1A)
+# [![we need help](https://img.shields.io/badge/we%20need-support-188FFF?style=for-the-badge&labelColor=1A1A1A) (click)](https://github.com/a1cd/Discord-Commands/issues)
 
