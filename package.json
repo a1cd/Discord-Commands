@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "run": "node index.js",
-    "test": "corde"
+    "test": "node test.js"
   },
   "author": "a1cd",
   "license": "ISC",
