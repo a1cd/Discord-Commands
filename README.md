@@ -1,5 +1,31 @@
-![banner](./docs/img/Easy-Banner.png)
-# Command Based Discord
+<h1 align="center">Command Based Discord</h1>
+<div align="center">
+  <strong>Quick Discord Bots</strong>
+</div>
+<div align="center">
+  A library that makes building command based discord bots easier
+</div>
+
+<div align="center">
+  <!-- banner -->
+  <a href="https://nodejs.org/api/documentation.html#documentation_stability_index">
+    <img src="./docs/img/Easy-Banner.png"
+      alt="banner" />
+  </a>
+</div>
+
+<div align="center">
+  <h3>
+    <a href="https://a1cd.github.io/Discord-Commands/">
+      Website
+    </a>
+    <span> | </span>
+    <a href="https://a1cd.github.io/Discord-Commands/Docs">
+      Docs
+    </a>
+  </h3>
+</div>
+
 [![Built With Love](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 [![Made With Javascript](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![Powered By Electricity](https://forthebadge.com/images/badges/powered-by-electricity.svg)](https://forthebadge.com)
@@ -28,3 +54,5 @@ Look up how to create a discord bot on youtube, and after you have gotten a Bot 
 
 # Now what
 Most of the other instructions are on the website! You can check it out [here](https://a1cd.github.io/Discord-Commands/)!
+# ![we need help](https://img.shields.io/badge/we%20need-support-188FFF?style=for-the-badge&labelColor=1A1A1A)
+
