@@ -23,10 +23,6 @@
     <a href="https://a1cd.github.io/Discord-Commands/Docs">
       Docs
     </a>
-    <span> | </span>
-    <a href="https://github.com/YerkoPalma/awesome-choo">
-      Ecosystem
-    </a>
   </h3>
 </div>
 
