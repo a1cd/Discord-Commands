@@ -29,6 +29,7 @@
 [![Built With Love](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 [![Made With Javascript](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![Powered By Electricity](https://forthebadge.com/images/badges/powered-by-electricity.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
 
 [![npm version](https://badge.fury.io/js/command-based-discord.svg)](https://badge.fury.io/js/command-based-discord)
 
