@@ -1,7 +1,8 @@
 {
-  "name": "discord-made-simple",
-  "version": "1.0.1",
-  "description": "Discord made siple through a cool command system",
+  "name": "command-based-discord",
+  "displayName": "Command-Based Discord",
+  "version": "1.1.0-0",
+  "description": "An easier way to create discord bots with plugins and commands",
   "main": "index.js",
   "scripts": {
     "run": "node index.js",
@@ -11,8 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "assert": "^2.0.0",
+    "command-based-discord": "^1.0.0",
     "discord.js": "^12.5.3",
-    "dotenv": "^8.2.0",
+    "dotenv": "^10.0.0",
     "mongodb": "^3.6.9"
   },
   "devDependencies": {
