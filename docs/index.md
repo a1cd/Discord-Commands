@@ -1,35 +1,8 @@
-<h1 align="center">Command Based Discord</h1>
-<div align="center">
-  <strong>Quick Discord Bots</strong>
-</div>
-<div align="center">
-  A library that makes building command based discord bots easier
-</div>
-
-<div align="center">
-  <!-- banner -->
-  <a href="https://nodejs.org/api/documentation.html#documentation_stability_index">
-    <img src="./docs/img/Easy-Banner.png"
-      alt="banner" />
-  </a>
-</div>
-
-<div align="center">
-  <h3>
-    <a href="https://a1cd.github.io/Discord-Commands/">
-      Website
-    </a>
-    <span> | </span>
-    <a href="https://a1cd.github.io/Discord-Commands/Docs">
-      Docs
-    </a>
-  </h3>
-</div>
-
+![banner](./img/Easy-Banner.png)
+# Command Based Discord
 [![Built With Love](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 [![Made With Javascript](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![Powered By Electricity](https://forthebadge.com/images/badges/powered-by-electricity.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
 
 [![npm version](https://badge.fury.io/js/command-based-discord.svg)](https://badge.fury.io/js/command-based-discord)
 
@@ -50,10 +23,48 @@ Other helpful 'sister' libraries:
 # Start   ![where do i start?](https://img.shields.io/badge/Where-Do%20I%20start-EB459E?style=for-the-badge&labelColor=000000)
 If you have experience with discord.js and node/npm skip to I know what im doing. If that doesnt apply to you, leave and learn, then come back.
 
-# First time ![im new](https://img.shields.io/badge/I'm-NEW!-DDD?style=for-the-badge&labelColor=5865F2)
-Look up how to create a discord bot on youtube, and after you have gotten a Bot token come back.
+```javascript
+const {Cmd} = require('discord-made-siple');
+const Discord = require('discord.js');
+const {ping, uptime, nick} = require('simple-discord-commands')
 
-# Now what
-Most of the other instructions are on the website! You can check it out [here](https://a1cd.github.io/Discord-Commands/)!
-# [![we need help](https://img.shields.io/badge/we%20need-support-188FFF?style=for-the-badge&labelColor=1A1A1A) (click)](https://github.com/a1cd/Discord-Commands/issues)
+const bot = new Discord.Client();
+bot.login(TOKEN)
 
+
+bot.on('ready', async () => {
+  console.info(`Logged in as ${bot.user.tag}!`);
+});
+
+/**
+ * @param {String} inp - input parameter given by user's message
+ * @param {Discord.Message} msg - the raw discord message
+ */
+function hi(inp, msg) {
+  msg.reply("yo!") // reply to the user "yo!"
+}
+
+var Commands = new Cmd("!", 0, ()=>{}, "", [
+  ping,
+  Cmd("hi", 0, hi, "say hi") // if the user runs the discord command "!hi" the bot will run the function hi
+  uptime,
+  nick
+])
+
+bot.on('message', msg => {
+  Commands.test(msg.content, msg) // run the right command
+});
+```
+the most important part is: 
+```javascript
+var Commands = new Cmd("!", 0, ()=>{}, "", [
+  ping,
+  Cmd("hi", 0, hi, "say hi") // if the user runs the discord command "!hi" the bot will run the function hi
+  uptime,
+  nick
+])
+```
+this is where this library shines, commands and subcommands can be setup in an easy and robust way.
+
+# Documentation
+Find the documentation [here](./Docs.md)
