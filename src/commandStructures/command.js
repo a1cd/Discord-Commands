@@ -51,6 +51,7 @@ class command {
   /**
     * @param {String} text - the filtered text
     * @param {Discord.Message} message - the raw message sent
+    * @returns {command}
     */
   test(text, message) {
     let result = this.find(text, (command)=>{
@@ -62,10 +63,12 @@ class command {
     if (result.commandFunction) {
       result.commandFunction(text, message, result)
     }
+    return result
   }
   /**
    * 
    * @param {String} command - the command string
+   * @param {(cmd: command) => boolean}
    * @returns 
    */
   find(command, matcher = (cmd)=>{return true}) {
@@ -73,8 +76,11 @@ class command {
       var done = false
       if (this.subcommands || !this.subcommands.length) {
         for (let i = 0; i < this.subcommands.length; i++) {
+          /**
+           * @type {command}
+           */
           const subcommand = this.subcommands[i];
-          var currentTest = subcommand.find(command.trimStart().slice(this.name.length))
+          var currentTest = subcommand.find(command.trimStart().slice(this.name.length), matcher)
           if (currentTest) {
             done = currentTest
             break
