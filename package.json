@@ -9,7 +9,7 @@
     "test": "node test.js"
   },
   "author": "a1cd",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "assert": "^2.0.0",
     "command-based-discord": "^1.0.0",
