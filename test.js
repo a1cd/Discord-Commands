@@ -1,0 +1,1 @@
+const tests = require('./src/test/allTests')
