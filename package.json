@@ -1,6 +1,6 @@
 {
   "name": "discord-made-simple",
-  "version": "1.0.3",
+  "version": "1.1.0-0",
   "description": "Discord made siple through a cool command system",
   "main": "index.js",
   "scripts": {
