@@ -8,8 +8,6 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  workflow_dispatch:
-    
 
 jobs:
 
@@ -27,15 +25,6 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-      env:
-        BOT_TOKEN: ${{secrets.BOT_KEY}}
-        TOKEN: ${{secrets.BOT_KEY}}
-        NPM_TOKEN: ${{secrets.TESTING_BOT_KEY}}
-        BOT_TEST_ID: "BotBot#4657"
-        GUILD_ID: 854130640491773952
-        CHANNEL_ID: 854130640491773956
-        PREFIX: "!"
     - run: npm ci
-    - run: npm i corde -g
     - run: npm run build --if-present
     - run: npm test
