@@ -44,6 +44,7 @@ class command {
     this.subcommands = options.subcommands || []
     this.commandFunction = options.commandFunction
     this.bot = options.bot || null
+    this.uuid = options.uuid
     if (options.bot) {
       this.reindex(this.bot)
     }
@@ -55,26 +56,32 @@ class command {
     */
   test(text, message) {
     let result = this.find(text, (command)=>{
-      if(!command.subcommands.length || command.subcommands){
+      if(!command.subcommands.length && command.subcommands){
         return true
       }
       return false
     })
-    if (result.commandFunction) {
-      result.commandFunction(text, message, result)
+    if (result) {
+      if (result.commandFunction) {
+        result.commandFunction(text, message, result)
+        return true
+      }
+    } else {
+      message.channel.send("uh oh, looks like i could not find a command for you! check your spelling?")
+      // return false
     }
-    return result
+    return false
   }
   /**
    * 
    * @param {String} command - the command string
    * @param {(cmd: command) => boolean}
-   * @returns 
+   * @returns {command}
    */
   find(command, matcher = (cmd)=>{return true}) {
     if (command.trimStart().startsWith(this.name)) {
       var done = false
-      if (this.subcommands || !this.subcommands.length) {
+      if (this.subcommands || this.subcommands.length) {
         for (let i = 0; i < this.subcommands.length; i++) {
           /**
            * @type {command}
