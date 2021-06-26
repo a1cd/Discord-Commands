@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 /**
    * @typedef {Object} CommandOptions
    * @property {String} name - The text trigger for the command.
@@ -22,7 +23,7 @@ class command {
     */
   help = null
   /**
-    * @type {Cmd[] | null} subcommands - All subcommands
+    * @type {command[] | null} subcommands - All subcommands
     */
   subcommands
   /**
@@ -62,8 +63,8 @@ class command {
       return false
     })
     if (result) {
-      if (result.commandFunction) {
-        result.commandFunction(text, message, result)
+      if (result.command.commandFunction) {
+        result.command.commandFunction(result.string, message, result)
         return true
       }
     } else {
@@ -76,7 +77,7 @@ class command {
    * 
    * @param {String} command - the command string
    * @param {(cmd: command) => boolean}
-   * @returns {command}
+   * @returns {{command, string}}
    */
   find(command, matcher = (cmd)=>{return true}) {
     if (command.trimStart().startsWith(this.name)) {
@@ -96,7 +97,7 @@ class command {
       }
       if (!done) {
         if (matcher(this)) {
-          return this
+          return {command: this, string: command.trimStart().slice(this.name.length).trimStart()}
         }
       } else {
         return done
