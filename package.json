@@ -14,7 +14,7 @@
     "assert": "^2.0.0",
     "command-based-discord": "^1.0.0",
     "discord.js": "^12.5.3",
-    "dotenv": "^10.0.0",
+    "dotenv": "^14.3.2",
     "mongodb": "^3.6.9"
   },
   "devDependencies": {
